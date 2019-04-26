@@ -199,4 +199,3 @@ INSERT INTO companies  VALUES (198, 'republic airways holdings', to_date('2015-0
 INSERT INTO companies  VALUES (199, 'schnitzer steel industries', to_date('2015-12-01', 'yyyy-mm-dd'));
 INSERT INTO companies  VALUES (200, 'microsoft corporation', to_date('2015-05-13', 'yyyy-mm-dd'));
 INSERT INTO companies  VALUES (201, 'autonation', to_date('2015-08-18', 'yyyy-mm-dd'));
-c

@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS customers
     phone BIGINT,
     email VARCHAR(320) UNIQUE NOT NULL,
     cc_number BIGINT NOT NULL,
+    age SMALLINT,
     PRIMARY KEY (afm)
 );
 

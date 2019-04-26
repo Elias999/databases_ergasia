@@ -1,66 +1,20 @@
-ΔΕΙΧΝΕΙ
-CREATE OR REPLACE FUNCTION show_ticket_price2(
-  a int
-)
-  RETURNS money AS $result$
-  declare
-    result money;
-  BEGIN
-  SELECT price into result
-  FROM tickets
-  WHERE id = a;
-  RETURN result;
-  END;
-  $result$ LANGUAGE plpgsql;
-
-ΑΛΛΑΖΕΙ ΤΗΝ ΤΙΜΗ ΚΑΙ ΤΟ ΤΥΠΩΝΕΙ
-  CREATE OR REPLACE FUNCTION replace_value1(
-    a int
-  )
-  RETURNS money AS $result$
-  declare
-    result money;
-    BEGIN
-    update tickets
-      set price = 2000
-      where id = a;
-
-    SELECT price into result
-    FROM tickets
-    WHERE id = a;
-    RETURN result;
-    END;
-    $result$ LANGUAGE plpgsql;
+    CREATE OR REPLACE FUNCTION replace_value()
+            RETURNS trigger AS
+            $$
+            BEGIN
+              UPDATE tickets
+                set price = CASE
+                              WHEN OLD.end_date < NEW.end_date THEN  price + 30 * price / 100
+                              ELSE  price - 30 * price / 100
+                            END
+                WHERE OLD.end_date != NEW.end_date;
+              RETURN NEW;
+            END;
+            $$ LANGUAGE plpgsql;
 
 
 
-  CREATE OR REPLACE FUNCTION replace_value1(
-    a int
-  )
-  RETURNS money AS $result$
-  declare
-    result money;
-    BEGIN
-    update tickets
-      set price = 2000
-      where id = a;
-
-    SELECT price into result
-    FROM tickets
-    WHERE id = a;
-    RETURN result;
-    END;
-    $result$ LANGUAGE plpgsql;
-
-
-    CREATE OR REPLACE FUNCTION replace_value_test()
-      RETURNS trigger AS
-      $$
-      BEGIN
-      UPDATE tickets
-        set price = 2000;
-      WHERE OLD.end_date != NEW.end_date;
-
-      RETURN NEW;
-      END;
-      $$ LANGUAGE plpgsql;
+        CREATE TRIGGER enimerwsi_timis
+          AFTER UPDATE OF end_date on tickets
+          FOR EACH ROW
+          EXECUTE PROCEDURE replace_value();
