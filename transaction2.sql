@@ -1,4 +1,4 @@
-INSERT INTO transactions (tickets_id, customer_id, conf_date, state) (tickets_id, customer_id, conf_date, state) VALUES (176, 343, to_date('2019-10-24', 'yyyy-mm-dd'), '3');
+INSERT INTO transactions (tickets_id, customer_id, conf_date, state) VALUES (176, 343, to_date('2019-10-24', 'yyyy-mm-dd'), '3');
 INSERT INTO transactions (tickets_id, customer_id, conf_date, state) VALUES (164, 680, to_date('2019-12-24', 'yyyy-mm-dd'), '3');
 INSERT INTO transactions (tickets_id, customer_id, conf_date, state) VALUES (19, 535, to_date('2019-09-14', 'yyyy-mm-dd'), '2');
 INSERT INTO transactions (tickets_id, customer_id, conf_date, state) VALUES (112, 642, to_date('2019-12-19', 'yyyy-mm-dd'), '2');
