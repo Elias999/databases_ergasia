@@ -37,8 +37,13 @@ group by afm,tickets.type
 ORDER BY customer_go desc;
 
 f
-
-
+select count(companies.afm) as eisitiria_pou_poulise,companies.afm,companies.name
+from transactions
+INNER JOIN tickets on tickets.id = transactions.tickets_id
+INNER JOIN companies on tickets.procurer = companies.afm
+group by companies.afm,companies.name
+order by eisitiria_pou_poulise desc
+;
 
 g
 select tickets.id,tickets.procurer,tickets.type,tickets.location,tickets.price,tickets.genre
